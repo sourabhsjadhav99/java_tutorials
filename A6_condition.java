@@ -36,6 +36,11 @@ public class A6_condition {
         } else {
             System.out.println("The number is zero.");
         }
+
+        // ternary operator
+        int a = 5, b = 10;
+        String result = (a > b) ? "a is greater than b" : "b is greater than or equal to a";
+        System.out.println(result);
     }
 
 }

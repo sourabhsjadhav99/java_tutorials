@@ -26,5 +26,17 @@ public class A3_dataTypes {
         System.out.println("Char value: " + myChar);
         System.out.println("Boolean value: " + myBoolean);
         System.out.println("String value: " + myString);
+
+
+        // implicit and explicit type casting
+        int myInt2 = 9;
+        double myDouble2 = myInt2; // implicit casting
+
+        double myDouble3 = 9.78;
+        int myInt3 = (int) myDouble3; // explicit casting
+
+        System.out.println("Implicit casting: " + myDouble2);
+        System.out.println("Explicit casting: " + myInt3);
+
     }
 }
