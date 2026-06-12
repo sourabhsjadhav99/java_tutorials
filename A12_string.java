@@ -8,6 +8,10 @@ public class A12_string {
         System.out.println("First character: " + name.charAt(0));
         System.out.println("Length of the string: " + name.length());
 
+        // string class
+        String anotherString = new String("Hello, World!");
+        System.out.println("Another string: " + anotherString);
+
         // Concatenating strings
         String greeting = "Hello, " + name + "!";
         System.out.println(greeting);
@@ -56,5 +60,24 @@ public class A12_string {
 
         String reversedString = new StringBuilder(name).reverse().toString();
         System.out.println("Reversed string: " + reversedString);
+
+        // mutable string using StringBuilder
+        StringBuilder stringBuilder = new StringBuilder("Hello");
+        stringBuilder.append(", World!");
+        System.out.println("StringBuilder result: " + stringBuilder.toString());
+
+        stringBuilder.insert(5, " Java");
+        System.out.println("StringBuilder after insert: " + stringBuilder.toString());
+
+        stringBuilder.delete(5, 10);
+        System.out.println("StringBuilder after delete: " + stringBuilder.toString());
+
+        stringBuilder.replace(0, 5, "Hi");
+        System.out.println("StringBuilder after replace: " + stringBuilder.toString());
+        
+        stringBuilder.reverse();
+        System.out.println("StringBuilder after reverse: " + stringBuilder.toString());
+
+
     }
 }

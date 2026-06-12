@@ -1,88 +1,166 @@
+// =========================
+// ABSTRACTION
+// =========================
 
-// Defining a class named Car
-class Car {
-    // Attributes of the Car class
-    String make;
-    String model;
-    int year;
-    // static variable shared by all Car instances
-    static int numberOfCars = 0;
+// Abstract class
+abstract class Vehicle {
 
-    // Constructor to initialize the attributes
-    Car(String make, String model, int year) {
-        this.make = make;
-        this.model = model;
-        this.year = year;
+    // Abstract method
+    abstract void start();
 
-    }
-
-    int counter() {
-        // increment count when a new Car is created
-        numberOfCars++;
-        return numberOfCars;
-    }
-
-    // Method to simulate starting the engine
-    void startEngine() {
-        System.out.println("The " + make + " " + model + " engine has started.");
-    }
-
-    // nested class example
-    class Engine {
-        String type;
-
-        Engine(String type) {
-            this.type = type;
-        }
-
-        void displayEngineType() {
-            System.out.println("Engine Type: " + type);
-        }
-    }
-
-    void nestedClassExample() {
-        Engine myEngine = new Engine("V6");
-        myEngine.displayEngineType();
-    }
-
-    // static nested class example
-    static class StaticNestedClass {
-        void displayMessage() {
-            System.out.println("This is a static nested class.");
-        }
+    // Concrete method
+    void stop() {
+        System.out.println("Vehicle stopped");
     }
 }
+
+// =========================
+// ENCAPSULATION
+// =========================
+
+class Car extends Vehicle {
+
+    // Private variables
+    private String brand;
+    private int speed;
+
+    // Constructor
+    Car(String brand, int speed) {
+        this.brand = brand;
+        this.speed = speed;
+    }
+
+    // =========================
+    // GETTER
+    // =========================
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public int getSpeed() {
+        return speed;
+    }
+
+    // =========================
+    // SETTER
+    // =========================
+
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+
+    public void setSpeed(int speed) {
+
+        // Validation example
+        if (speed >= 0) {
+            this.speed = speed;
+        }
+    }
+
+    // =========================
+    // METHOD OVERRIDING
+    // =========================
+
+    @Override
+    void start() {
+        System.out.println(brand + " car started");
+    }
+
+    // =========================
+    // METHOD OVERLOADING
+    // Same method name
+    // Different parameters
+    // =========================
+
+    void drive() {
+        System.out.println("Driving normally");
+    }
+
+    void drive(int speed) {
+        System.out.println("Driving at " + speed + " km/h");
+    }
+
+    void drive(String mode) {
+        System.out.println("Driving in " + mode + " mode");
+    }
+
+    // =========================
+    // STATIC METHOD
+    // Belongs to class
+    // =========================
+
+    static void companyInfo() {
+        System.out.println("Car Company Information");
+    }
+}
+
+// =========================
+// ANOTHER CHILD CLASS
+// For Dynamic Method Dispatch
+// =========================
+
+class Bike extends Vehicle {
+
+    @Override
+    void start() {
+        System.out.println("Bike started");
+    }
+}
+
+// =========================
+// MAIN CLASS
+// =========================
 
 public class A14_oops {
 
     public static void main(String[] args) {
-        // Creating an object of the Car class
-        Car myCar = new Car("Toyota", "Camry", 2020);
-        Car myCar2 = new Car("Honda", "Civic", 2021);
 
-        // Accessing the attributes of the Car object
-        System.out.println("Car Make: " + myCar.make);
-        System.out.println("Car Model: " + myCar.model);
-        System.out.println("Car Year: " + myCar.year);
+        // ==================================
+        // ENCAPSULATION + GETTER + SETTER
+        // ==================================
 
-        // Calling a method of the Car object
-        myCar.startEngine();
+        Car car = new Car("Toyota", 100);
 
-        // static variable example - use one memory location for all objects
-        System.out.println("Number of Cars: " + Car.numberOfCars); // Accessing static variable directly through the
-                                                                   // class name
-        // numberOfCars is declared in the Car class
-        System.out.println("Number of Cars1: " + myCar.counter());
+        System.out.println("Brand: " + car.getBrand());
+        System.out.println("Speed: " + car.getSpeed());
 
-        System.out.println("Number of Cars2: " + myCar2.counter());
+        car.setBrand("Honda");
+        car.setSpeed(120);
 
-        // nested class example
-        myCar.nestedClassExample();
+        System.out.println("Updated Brand: " + car.getBrand());
+        System.out.println("Updated Speed: " + car.getSpeed());
 
-        // static nested class example
-        Car.StaticNestedClass staticNestedClass = new Car.StaticNestedClass();
-        staticNestedClass.displayMessage();
+        // ==================================
+        // ABSTRACTION
+        // ==================================
 
+        car.start(); // Abstract method implementation
+        car.stop();  // Concrete method
+
+        // ==================================
+        // METHOD OVERLOADING
+        // ==================================
+
+        car.drive();
+        car.drive(80);
+        car.drive("Sport");
+
+        // ==================================
+        // STATIC METHOD
+        // ==================================
+
+        Car.companyInfo();
+
+        // ==================================
+        // DYNAMIC METHOD DISPATCH
+        // Runtime Polymorphism
+        // ==================================
+
+        Vehicle v1 = new Car("BMW", 150);
+        Vehicle v2 = new Bike();
+
+        v1.start(); // Calls Car's start()
+        v2.start(); // Calls Bike's start()
     }
-
 }

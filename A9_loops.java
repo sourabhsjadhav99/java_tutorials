@@ -14,6 +14,13 @@ public class A9_loops {
             }
         }
 
+        // enhanced for loop
+        System.out.println("\nEnhanced for loop:");
+        int[] numbers = { 10, 20, 30, 40, 50 };
+        for (int number : numbers) {
+            System.out.println("Number: " + number);
+        }
+
         // While loop
         System.out.println("\nWhile loop:");
         int j = 0;

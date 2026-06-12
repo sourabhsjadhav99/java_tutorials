@@ -17,6 +17,16 @@ class A11_array {
         }
 
         // 2d array example
+        int [][] matrixx = new int[3][3];
+
+        for (int i = 0; i < matrixx.length; i++) {
+            for (int j = 0; j < matrixx[i].length; j++) {
+                matrixx[i][j] = (int)(Math.random()*10);
+            }
+        }
+
+
+        // or
         int[][] matrix = {
                 { 1, 2, 3 },
                 { 4, 5, 6 },
@@ -32,5 +42,28 @@ class A11_array {
             System.out.println();
         }
 
+        // array of objects
+        Student[] students = {
+                new Student("Alice", 20),
+                new Student("Bob", 22),
+                new Student("Charlie", 19)
+        };
+
+        // Looping through the array of objects
+        System.out.println("All students in the array of objects:");
+        for (int i = 0; i < students.length; i++) {
+            System.out.println("Name: " + students[i].name + ", Age: " + students[i].age);
+        }
+
+    }
+}
+
+class Student {
+    String name;
+    int age;
+
+    Student(String name, int age) {
+        this.name = name;
+        this.age = age;
     }
 }
