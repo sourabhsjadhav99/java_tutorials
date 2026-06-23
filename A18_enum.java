@@ -53,8 +53,7 @@ enum UserRole implements Printable {
     // Normal Method
     public void displayInfo() {
         System.out.println(
-            this + " | " + description + " | Level: " + level
-        );
+                this + " | " + description + " | Level: " + level);
     }
 
     // Interface Method

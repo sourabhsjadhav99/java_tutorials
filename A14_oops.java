@@ -78,7 +78,7 @@ class Car extends Vehicle {
     // =========================
 
 
-    @Override
+    @Override // annotation to indicate overriding
     void start() {
         System.out.println(brand + " car started");
     }
