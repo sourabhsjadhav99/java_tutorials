@@ -74,10 +74,66 @@ public class A12_string {
 
         stringBuilder.replace(0, 5, "Hi");
         System.out.println("StringBuilder after replace: " + stringBuilder.toString());
-        
+
         stringBuilder.reverse();
         System.out.println("StringBuilder after reverse: " + stringBuilder.toString());
+        // ----------
 
+        // =========================
+        // String (Immutable)
+        // =========================
+
+        String str = "Hello";
+
+        System.out.println("Before String: " + str);
+
+        str = str + " Java";
+
+        System.out.println("After String : " + str);
+
+        // =========================
+        // StringBuffer (Mutable)
+        // Thread Safe
+        // =========================
+
+        StringBuffer sbf = new StringBuffer("Hello");
+
+        System.out.println("\nBefore StringBuffer: " + sbf);
+
+        sbf.append(" Java");
+        sbf.append(" World");
+
+        System.out.println("After StringBuffer : " + sbf);
+
+        // =========================
+        // StringBuilder (Mutable)
+        // Faster, Not Thread Safe
+        // =========================
+
+        StringBuilder sbd = new StringBuilder("Hello");
+
+        System.out.println("\nBefore StringBuilder: " + sbd);
+
+        sbd.append(" Java");
+        sbd.append(" World");
+
+        System.out.println("After StringBuilder : " + sbd);
+
+        // =========================
+        // Common Methods
+        // =========================
+
+        sbd.insert(5, " Core");
+        System.out.println("\nAfter Insert : " + sbd);
+
+        sbd.replace(6, 10, "Advanced");
+        System.out.println("After Replace: " + sbd);
+
+        sbd.delete(6, 14);
+        System.out.println("After Delete : " + sbd);
+
+        sbd.reverse();
+        System.out.println("After Reverse: " + sbd);
 
     }
 }

@@ -27,7 +27,6 @@ public class A3_dataTypes {
         System.out.println("Boolean value: " + myBoolean);
         System.out.println("String value: " + myString);
 
-
         // implicit and explicit type casting
         int myInt2 = 9;
         double myDouble2 = myInt2; // implicit casting
@@ -37,6 +36,25 @@ public class A3_dataTypes {
 
         System.out.println("Implicit casting: " + myDouble2);
         System.out.println("Explicit casting: " + myInt3);
+
+        int x = 300;
+        byte b = (byte) x;
+        // 300 % 256 = 44
+        // If n is outside -128 to 127, keep only the last 8 bits.
+
+        // For positive numbers:
+        // Result ≈ n % 256
+        // If result > 127,
+        // result = result - 256
+
+        System.out.println(b);
+
+        // Type Promotion -
+        byte a1 = 100;
+        byte b1 = 100;
+
+        int c = a1 * b1; // a1 and b1 are promoted to int before multiplication
+        System.out.println(c);
 
     }
 }
