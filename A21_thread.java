@@ -5,17 +5,14 @@ public class A21_thread {
         System.out.println("===== MAIN THREAD STARTED =====");
 
         // Current Thread
-        System.out.println("Current Thread : "
-                + Thread.currentThread().getName());
+        System.out.println("Current Thread : " + Thread.currentThread().getName());
 
         // ==========================
         // 1. Extending Thread
-        // ==========================
         MyThread t1 = new MyThread();
 
         // ==========================
-        // 2. Runnable Object
-        // ==========================
+        // 2. Runnable Object - itself is NOT a thread, but it can be passed to a Thread object to create a new thread
         Runnable t2 = new MyRunnable();
 
         // Runnable itself is NOT a thread
@@ -29,9 +26,7 @@ public class A21_thread {
         Thread t4 = new Thread(() -> {
             for (int i = 1; i <= 3; i++) {
 
-                System.out.println(
-                        Thread.currentThread().getName()
-                                + " Lambda : " + i);
+                System.out.println(Thread.currentThread().getName() + " Lambda : " + i);
 
                 try {
                     Thread.sleep(1000);
@@ -42,26 +37,22 @@ public class A21_thread {
         });
 
         // ==========================
-        // 4. Naming Threads
+        // 4. Naming Threads - Thread names are useful for debugging and logging purposes, as they help identify which thread is executing a particular piece of code. By default, threads are assigned names like "Thread-0", "Thread-1", etc., but you can set custom names to make it easier to understand the flow of your program.
         // ==========================
         t1.setName("Worker-1");
         t3.setName("Worker-2");
         t4.setName("Worker-3");
 
         // ==========================
-        // 5. Priority
+        // 5. Priority - Thread priority is a hint to the thread scheduler about the relative importance of a thread. It can influence the order in which threads are scheduled for execution, but it does not guarantee that higher-priority threads will always run before lower-priority ones. The actual behavior may vary depending on the underlying operating system and its scheduling policies.
         // ==========================
         t1.setPriority(Thread.MAX_PRIORITY); // 10
         t3.setPriority(Thread.NORM_PRIORITY); // 5
         t4.setPriority(Thread.MIN_PRIORITY); // 1
 
-        System.out.println(
-                t1.getName() + " Priority : "
-                        + t1.getPriority());
+        System.out.println(t1.getName() + " Priority : " + t1.getPriority());
 
-        System.out.println(
-                t3.getName() + " Priority : "
-                        + t3.getPriority());
+        System.out.println(t3.getName() + " Priority : " + t3.getPriority());
 
         // ==========================
         // 6. Daemon Thread
@@ -73,9 +64,7 @@ public class A21_thread {
         // ==========================
         // 7. Thread State
         // ==========================
-        System.out.println(
-                "Before Start : "
-                        + t1.getState());
+        System.out.println("Before Start : " + t1.getState());
 
         // ==========================
         // 8. start()
@@ -84,9 +73,7 @@ public class A21_thread {
         t3.start();
         t4.start();
 
-        System.out.println(
-                "After Start : "
-                        + t1.getState());
+        System.out.println("After Start : " + t1.getState());
 
         // ==========================
         // 9. join()
@@ -118,26 +105,19 @@ public class A21_thread {
         s1.join();
         s2.join();
 
-        System.out.println(
-                "Counter Value : "
-                        + counter.getCount());
+        System.out.println("Counter Value : " + counter.getCount());
 
         // ==========================
         // 11. isAlive()
         // ==========================
-        System.out.println(
-                "t1 Alive : "
-                        + t1.isAlive());
+        System.out.println("t1 Alive : " + t1.isAlive());
 
         // ==========================
         // 12. Final State
         // ==========================
-        System.out.println(
-                "t1 State : "
-                        + t1.getState());
+        System.out.println("t1 State : " + t1.getState());
 
-        System.out.println(
-                "===== MAIN THREAD ENDED =====");
+        System.out.println("===== MAIN THREAD ENDED =====");
     }
 }
 
@@ -147,16 +127,15 @@ public class A21_thread {
 class MyThread extends Thread {
 
     @Override
-    public void run() {
+    public void run() { // Every thread has its own run() method, which is executed when the thread is
+        // started
 
         for (int i = 1; i <= 5; i++) {
 
-            System.out.println(
-                    getName()
-                            + " : " + i);
+            System.out.println(getName() + " : " + i);
 
             try {
-                Thread.sleep(1000);
+                Thread.sleep(1000); // sleep() method is used to pause the execution of the current thread for a specified time
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -165,7 +144,11 @@ class MyThread extends Thread {
 }
 
 // ==========================
-// RUNNABLE
+// RUNNABLE - it is a functional interface, which means it has only one abstract
+// method, run(). It can be implemented using a lambda expression or an
+// anonymous class. Runnable is used to define the task that a thread will
+// execute. It is often used when you want to separate the task from the thread
+// itself, allowing for more flexibility and reusability of the code.
 // ==========================
 class MyRunnable implements Runnable {
 
@@ -174,9 +157,7 @@ class MyRunnable implements Runnable {
 
         for (int i = 1; i <= 5; i++) {
 
-            System.out.println(
-                    Thread.currentThread().getName()
-                            + " : " + i);
+            System.out.println(Thread.currentThread().getName() + " : " + i);
 
             try {
                 Thread.sleep(700);
@@ -210,7 +191,11 @@ class DaemonTask extends Thread {
 }
 
 // ==========================
-// SYNCHRONIZATION
+// SYNCHRONIZATION - it is used to control access to shared resources by
+// multiple threads
+// e.g., when multiple threads are trying to access a shared resource, it can
+// lead to data inconsistency or unexpected behavior. Synchronization ensures
+// that only one thread can access the shared resource at a
 // ==========================
 class Counter {
 
