@@ -38,7 +38,7 @@ public class A25_comparator {
         System.out.println(employees);
     }
 }
-
+// Comparator - to buuild custome sorting 
 class Employee implements Comparable<Employee> {
 
     int id;
@@ -52,8 +52,8 @@ class Employee implements Comparable<Employee> {
     }
 
     @Override
-    public int compareTo(Employee e) {
-        return this.id - e.id;
+    public int compareTo(Employee that) {
+        return this.id - that.id;
     }
 
     @Override

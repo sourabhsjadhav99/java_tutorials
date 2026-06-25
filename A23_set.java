@@ -111,9 +111,7 @@ public class A23_set {
                         + linkedSet);
 
         // ==========================
-        // 12. TreeSet
-        // Sorted Order
-        // ==========================
+        // 12. TreeSet -  Sorted Order
         Set<Integer> treeSet = new TreeSet<>();
 
         treeSet.add(50);
